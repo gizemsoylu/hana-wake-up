@@ -23,11 +23,15 @@ jobs:
           CF_API: ${{ secrets.CF_API }}
           CF_USERNAME: ${{ secrets.CF_USERNAME }}
           CF_PASSWORD: ${{ secrets.CF_PASSWORD }}
+          CF_ORG: ${{ secrets.CF_ORG }}
+          CF_SPACE: ${{ secrets.CF_SPACE }}
         run: |
           cf login -a "$CF_API" \
             -u "$CF_USERNAME" \
-            -p "$CF_PASSWORD"
-
+            -p "$CF_PASSWORD" \
+            -o "$CF_ORG"
+            -s "$CF_SPACE"
+            
       - name: Wake up HANA 🐣
         env:
           CF_SERVICE_INSTANCE: ${{ secrets.CF_SERVICE_INSTANCE }}
